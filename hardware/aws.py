@@ -27,8 +27,8 @@ response = client.run_instances(
     MinCount=1,
     UserData='''#!/bin/bash
     sudo apt update
-    sudo apt install git
-    sudo apt install python3
+    sudo apt install git -y
+    sudo apt install python3 -y
     sudo apt install python3-pip -y
     sudo pip install -U Flask
     sudo pip install -U waitress
