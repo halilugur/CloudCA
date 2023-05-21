@@ -1,11 +1,15 @@
-import boto3, os
+import boto3
+import os
 
-key_path = "./cctkey1.pem"
+key_path = './cctkey1.pem'
+sec_gr = 'sg-036cfa85ed283ecc7'
+ami_id = 'ami-04e601abe3e1a910f'
+region = 'eu-central-1'
 tag_name = {"Key": "Name", "Value": "halil-CA-server"}
 
-client = boto3.client("ec2", region_name="eu-central-1")
+client = boto3.client('ec2', region_name=region)
 
-reponse = client.run_instances(
+response = client.run_instances(
     BlockDeviceMappings=[
         {
             'DeviceName': '/dev/sda1',
@@ -13,13 +17,12 @@ reponse = client.run_instances(
                 'DeleteOnTermination': True,
                 'VolumeSize': 20,
                 'VolumeType': 'gp2'
-            }
+            },
         },
     ],
-    ImageId="ami-04e601abe3e1a910f",
-    InstanceType="t2.micro",
+    ImageId=ami_id,
+    InstanceType='t2.micro',
     KeyName=os.path.basename(key_path).split('.')[0],
-    SecurityGroups=['vpc-0525cb89b520dc144'],
     MaxCount=1,
     MinCount=1,
     UserData='''#!/bin/bash
@@ -28,8 +31,18 @@ reponse = client.run_instances(
     sudo apt install python3
     sudo apt install python3-pip -y
     sudo pip install -U Flask
-    
+    sudo pip install -U waitress
+    cd /home/ubuntu
+    git clone https://github.com/halilugur/CloudCA.git
+    cd CloudCA
+    python3 prod.py
     ''',
+    Monitoring={
+        'Enabled': False
+    },
+    SecurityGroupIds=[
+        sec_gr,
+    ],
     TagSpecifications=[{'ResourceType': 'instance', 'Tags': [tag_name]}]
 )
 
