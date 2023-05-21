@@ -23,7 +23,7 @@ The Quotes Application is built using the following technologies:
 
 To get started with the Quotes Application, follow these steps:
 
-1. Clone the repository from GitHub: `git clone https://github.com/halilugur/CloudCA.git`.
+1. Clone the repository from GitHub: `git clone https://github.com/halilugur/PythonFlaskAWS.git`.
 2. Install the required dependencies by running `pip install -r requirements.txt`.
 3. Start the application by running `python prod.py`.
 4. Open your browser and navigate to `http://localhost:5000` to access the Quotes Application.
