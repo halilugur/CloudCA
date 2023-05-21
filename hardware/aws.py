@@ -33,8 +33,8 @@ response = client.run_instances(
     sudo pip install -U Flask
     sudo pip install -U waitress
     cd /home/ubuntu
-    git clone https://github.com/halilugur/CloudCA.git
-    cd CloudCA
+    git clone https://github.com/halilugur/PythonFlaskAWS.git
+    cd PythonFlaskAWS
     python3 prod.py
     ''',
     Monitoring={
