@@ -1,0 +1,8 @@
+/build/
+/nbproject/private
+/dist/
+.idea/
+*.iml
+/out/
+/__pycache__
+/hardware/cctkey1.pem
